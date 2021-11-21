@@ -1,8 +1,20 @@
 import React from 'react';
-import { Link } from 'gatsby';
+import { Link, useStaticQuery, graphql } from 'gatsby';
 
 
-const index = () => {
+export default function IndexPage() {
+    const data = useStaticQuery(graphql `
+        query GetSiteTitle {
+            site {
+                siteMetadata {
+                    title
+                }
+            }
+        }
+    `);
+
+    const meta = data?.site?.siteMetadata ?? {};
+
     return (
         <div>
             <h1>Hello Frontend Masters!</h1>
@@ -10,5 +22,3 @@ const index = () => {
         </div>
     );
 };
-
-export default index;
